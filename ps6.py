@@ -239,7 +239,33 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        pass #delete this line and replace with your code here
+        real_words = load_words(WORDLIST_FILENAME)
+
+        alphabet = len(string.ascii_lowercase)
+
+        hit_counter = 0
+        decrypted_text = ''
+        best_shift = None
+
+        for s in range(alphabet):
+            text = self.apply_shift(alphabet - s)
+            words_list = text.split(' ')
+            counter = 0
+            for word in words_list:
+                if is_word(real_words, word):
+                    counter += 1
+            if counter > hit_counter:
+                hit_counter = counter
+                best_shift = alphabet - s
+                decrypted_text = text
+
+        if best_shift == 26:
+            best_shift = 0
+
+        return best_shift, decrypted_text
+
+
+
 
 #Example test case (PlaintextMessage)
 plaintext = PlaintextMessage('hello', 2)
