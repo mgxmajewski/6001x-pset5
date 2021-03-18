@@ -105,8 +105,20 @@ class Message(object):
         lower_chars = list(string.ascii_lowercase)
         upper_chars = list(string.ascii_uppercase)
 
+        def mapChars(charset):
+            mappedChars = {}
+            for charIndex in range(len(charset)):
+                key = charset[charIndex]
+                value = charset[(charIndex + shift) % 26]
+                mappedChars[key] = value
+            return mappedChars
 
+        cipheredLower = mapChars(lower_chars)
+        cipheredUpper = mapChars(upper_chars)
 
+        cipheredAllChars = {**cipheredLower, **cipheredUpper}
+
+        return cipheredAllChars
 
 
     def apply_shift(self, shift):
@@ -121,7 +133,9 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        pass #delete this line and replace with your code here
+
+
+
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
@@ -222,15 +236,6 @@ ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
 
-shift = 3
-lower_chars = list(string.ascii_lowercase)
-upper_chars = list(string.ascii_uppercase)
 
-cipherMapping = {}
 
-for charIndex in range(len(lower_chars)):
-    key = lower_chars[charIndex]
-    value = lower_chars[(charIndex + shift) % 26]
-    cipherMapping[key] = value
 
-print(cipherMapping)
