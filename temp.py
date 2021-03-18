@@ -1,6 +1,6 @@
 import string
 
-shift = 3
+shift = 2
 text = 'hello'
 lower_chars = list(string.ascii_lowercase)
 upper_chars = list(string.ascii_uppercase)
@@ -22,3 +22,11 @@ cipheredUpper = mapChars(upper_chars)
 cipheredAllChars = {**cipheredLower, **cipheredUpper}
 
 print(cipheredAllChars)
+
+cipherText = ""
+
+for char in text:
+    cipherChar = cipheredAllChars[char]
+    cipherText+=cipherChar
+
+print(cipherText)
