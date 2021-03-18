@@ -102,7 +102,10 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass #delete this line and replace with your code here
+        lower_chars = list(string.ascii_lowercase)
+        upper_chars = list(string.ascii_uppercase)
+
+
 
     def apply_shift(self, shift):
         '''
@@ -216,3 +219,6 @@ print('Actual Output:', plaintext.get_message_text_encrypted())
 ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
+
+print(list(string.ascii_lowercase))
+print(list(string.ascii_uppercase))
