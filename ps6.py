@@ -107,6 +107,8 @@ class Message(object):
 
 
 
+
+
     def apply_shift(self, shift):
         '''
         Applies the Caesar Cipher to self.message_text with the input shift.
@@ -220,5 +222,15 @@ ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
 
-print(list(string.ascii_lowercase))
-print(list(string.ascii_uppercase))
+shift = 3
+lower_chars = list(string.ascii_lowercase)
+upper_chars = list(string.ascii_uppercase)
+
+cipherMapping = {}
+
+for charIndex in range(len(lower_chars)):
+    key = lower_chars[charIndex]
+    value = lower_chars[(charIndex + shift) % 26]
+    cipherMapping[key] = value
+
+print(cipherMapping)
