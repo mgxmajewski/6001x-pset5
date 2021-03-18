@@ -115,7 +115,6 @@ class Message(object):
 
         cipheredLower = mapChars(lower_chars)
         cipheredUpper = mapChars(upper_chars)
-
         cipheredAllChars = {**cipheredLower, **cipheredUpper}
 
         return cipheredAllChars
@@ -133,6 +132,16 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
+
+        cipherText = ""
+        for char in self.message_text:
+            if char.isalpha():
+                cipherChar = self.build_shift_dict(shift)[char]
+                cipherText += cipherChar
+            else:
+                cipherText += char
+
+        return cipherText
 
 
 
